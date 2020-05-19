@@ -1,80 +1,180 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Luckybot</title>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="WoW Classic Price Bot allows you to query the auctionhouse from simple AH item
+        searches, to more complex AH crafting prices. It can set a predefined realm for your guild, or support
+        all realms and factions.">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
-  </head>
-  <body>
-    <section class="hero is-medium">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <figure class="image is-192x192" style="margin: auto auto 30px auto">
-            <img class="is-rounded lucky-icon" src="./luckybot.jpg">
-          </figure>
-          <h1 class="title is-1 is-spaced">
-            Luckybot
-          </h1>
-          <a class="button button-landing is-rounded is-medium is-link" href="#commands">
-            <strong class="has-text-weight-semibold"></strong>Commands</strong>
-          </a>
-          <a class="button button-landing is-rounded is-medium is-info" href="https://discord.gg/z4thPtW" target="_blank">
-            Discord Server
-          </a>
-          <a class="button button-landing is-rounded is-medium is-primary is-outlined is-inverted" href="p48.html">
-            Produce 48
-          </a>
+    <link rel="stylesheet" href="css/now-ui-kit.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,800&display=swap" rel="stylesheet">
+    <title>WoW Classic Price Bot</title>
+    <script src="js/typing.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158775800-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-158775800-1');
+    </script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-transparent">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">Commands</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" target="_blank" href="https://discord.gg/2VErGb5">Support server</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" target="_blank" href="https://www.patreon.com/wowpricebot">Premium</a>
+                </li>
+            </ul>
+            <a
+                href="https://discordapp.com/api/oauth2/authorize?client_id=675698972244967426&permissions=84032&scope=bot">
+                <button class="btn btn-outline-secondary my-2 my-sm-0 btn-round btn-sm">Add to server</button>
+            </a>
         </div>
-      </div>
-      <div class="hero-footer">
-        <div class="chevron-arrow-wrap">
-          <a href="#commands" class="chevron-arrow"></a>
+    </nav>
+    <div class="heading text-center">
+        <img src="./classic.png" style="width: 300px;" alt="">
+        <div style="margin-top: 30px;">
+            <a href="https://top.gg/bot/675698972244967426" >
+                <img src="https://top.gg/api/widget/status/675698972244967426.svg" alt="wowpricebot" />
+                </a> <a href="https://top.gg/bot/675698972244967426" >
+                    <img src="https://top.gg/api/widget/servers/675698972244967426.svg" alt="wowpricebot" />
+                  </a>
         </div>
-      </div>
-    </section>
-    <div class="stripes">
-      <span></span>
-      <span></span>
-      <span></span>
+        <h1 style="padding-top: 10px;" class="display-5 title">Get WoW Classic AH prices in Discord</h1>
+        <h2 class="demoCommandContainer"><span id="demoCommand"></span> <div id="typing" class="typing"></div></h2>
+        <!-- <p class="subtitle">WoW Classic Price Bot allows you to query the auctionhouse from simple AH item
+            searches, <br />to more complex AH crafting prices. It can set a predefined realm for your guild, or support
+            all realms and factions.
+        </p>   -->
+        <h3 style="padding-top: 10px;" class="display-6">Serving <strong>235,000+</strong> users in <strong>2,000+</strong> servers</h3>
+            
+        
+        <a class="btn btn-primary btn-lg"
+            href="https://discordapp.com/api/oauth2/authorize?client_id=675698972244967426&permissions=84032&scope=bot"
+            role="button">Add to server</a>
+        <a class="btn btn-secondary btn-lg" href="about.html" role="button">Read docs</a>
+            <a class="btn btn-secondary btn-lg"
+            href="https://www.patreon.com/wowpricebot"
+            role="button">Get premium</a>
+            <p>
+            <br />
+            Price data provided by <a href="https://nexushub.co/wow-classic">Nexushub</a></p>
+        <br /><br /><br /><br /><br /><br />
     </div>
-    <section class="section">
-      <div class="container">
-        <div class="columns">
-          <div class="column is-8-desktop is-offset-2-desktop">
-            <div class="content">
-              <h2 id="commands">Commands</h2>
-              <p>This website is for command help with Lucky Bot for Discord. For more information, please contact Rave#0737.</p>
-              <div id="cmds"></div>
-              <h2>Relays</h2>
-              <p>Relays connect a two way chat system between two channels on a server or between two servers. Please contact Rave#0737
-              or OrigamiCoder#1375 to have one set up.</p>
+    <div class="features">
+        <div class="title">Features</div>
+        <!-- <div class="subtitle">We provide you the best features in Bot!</div> -->
+        <div class="cards">
+            <div class="card" style="width: 46rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Item prices</h5>
+                    <p class="card-text">
+                    <script src="https://gist.github.com/ErlendEllingsen/ccecd32bb57ecf3442a20ed21890a285.js"></script>
+                    <div style="text-align: center;">
+                        <img style="width: 315px;" src="https://i.imgur.com/M2pTLaE.png" alt="">
+                        <img style="width: 300px;" src="https://i.imgur.com/HJdACHW.png" alt="">
+                        <br />
+                        <br />
+                        Please note that single-realm or multi-realm syntax is defined on server setup.
+                        See <a href="about.html">server setup</a>.
+                    </div>
+                    </p>
+                </div>
             </div>
-          </div>
+            <br />
+            <div class="card" style="width: 46rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Crafting prices</h5>
+                    <p class="card-text">
+                        <script src="https://gist.github.com/ErlendEllingsen/7663ff155996c8ce48ed1a3cf64bac06.js"></script>
+                        <div style="text-align: center;">
+                            <img style="width: 302px;" src="https://i.imgur.com/xZEZLc7.png" alt="">
+                            <img style="width: 300px;" src="https://i.imgur.com/aLXsp1f.png" alt="">
+                            <br />
+                            <br />
+                            Please note that single-realm or multi-realm syntax is defined on server setup.
+                            See <a href="about.html">server setup</a>.
+                        </div>
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
-    </section>
-    <footer class="footer">
-      <div class="container">
-         <div class="columns">
-          <div class="column is-8-desktop is-offset-2-desktop">
-            <p>
-              <strong class="has-text-weight-semibold">
-                <a href="https://github.com/Ravexburn/LuckyBot/" target="_blank">Ravexburn/LuckyBot</a>
-              </strong>
-            </p>
-            <p>
-              <small>
-                Source code licensed <a href="https://opensource.org/licenses/mit-license.php" target="_blank">MIT</a>
-                <br>
-                Website created by tzuwy#7080
-              </small>
-            </p>
-          </div>
+    </div>
+    <div class="statistics">
+        <div class="cards">
+            <div class="card statistic" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Servers</h5>
+                    <h1 style="font-weight: bold !important">2,000+</h1>
+                </div>
+            </div>
+            <div class="card statistic" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">AH Lookups</h5>
+                    <h1 style="font-weight: bold !important">255,000+</h1>
+                </div>
+            </div>
+            <div class="card statistic" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Serving users</h5>
+                    <h1 style="font-weight: bold !important">235,000+</h1>
+                </div>
+            </div>
         </div>
-      </div>
-    </footer>
-    <script type="text/javascript" src="lib/main.js"></script>
-  </body>
+    </div>
+    <div class="start">
+        <div class="card">
+            <div class="card-body">
+                <div class="title">Get started now!</div>
+                <div class="subtitle">Invite wowpricebot and get AH prices directly to Discord</div>
+                <br />
+                <a class="btn btn-primary btn-lg" href="https://discordapp.com/api/oauth2/authorize?client_id=675698972244967426&permissions=84032&scope=bot" role="button">Add bot to server</a>
+                <a class="btn btn-secondary btn-lg" href="about.html" role="button">Read docs</a>
+                <a class="btn btn-secondary btn-lg" href="https://www.patreon.com/wowpricebot" role="button">Get premium</a>
+            </div><br />
+        </div>
+    </div>
+    <div class="footer">
+        <a href="https://www.patreon.com/wowpricebot" target="_blank" style="display: block; margin-top: 10px; margin-bottom: 10px;">
+            <img src="./patron.png" alt="Become a patron!" style="width: 200px;">
+        </a>
+
+        Bot by <a href="https://github.com/ErlendEllingsen">Erlend Ellingsen</a>
+        Price data provided by <a href="https://nexushub.co/wow-classic">Nexushub</a></p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="js/now-ui-kit.min.js"></script>
+</body>
+
 </html>
