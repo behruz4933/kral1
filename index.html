@@ -1,59 +1,63 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+  
+  <html>
+  <head>
+    <title>Sparky Discord Bot</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
 
-<head>
-  <meta charset="utf-8">
-  <!-- Add Favicon later -->
-  <link href="style.css" rel="stylesheet" type="text/css">
-  <title>The Lads</title>
-  <script>
-    /* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-    function myFunction() {
-      document.getElementById("myDropdown").classList.toggle("show");
-    }
+    <meta name="theme-color" content="#2196F3">
+    <meta name="theme-color" content="#2196F3">
+    <meta content="assets/sparkylogo.png" property="og:image" />
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <meta content="Sparky-Discord-Bot" property="og:title" />
 
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function(e) {
-      if (!e.target.matches('.dropbtn')) {
-        var myDropdown = document.getElementById("myDropdown");
-        if (myDropdown.classList.contains('show')) {
-          myDropdown.classList.remove('show');
-        }
-      }
-    }
-  </script>
-</head>
+<!--Scripts-->
+    <script src="https://sparky-discord-bot.github.io/Sparky-Website/assets/js/smoothscroll.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://sparky-discord-bot.github.io/Sparky-Website/assets/js/main.js" type="text/javascript" charset="utf-8"></script>
 
-<body>
-  <nav>
-    <div class="navwrapper">
-      <div class="navbar">
-        <a href="index.html">Home</a>
-        <div class="dropdown">
-          <button class="dropbtn" onclick="myFunction()">Bots
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content" id="myDropdown">
-            <a href="bots/Cyborg-2D.html">Cyborg2D</a>
-            <a href="bots/damonbot.html">Damonbot</a>
-            <a href="bots/jamiebot.html">Jamiebot</a>
-          </div>
-        </div>
-        <a href=" https://discord.gg/VPjB4aP">Home Discord</a>
-      </div>
+    <!-- Stylesheets -->
+  <link href="css/modesta.min.css" type="text/css" rel="stylesheet">
+    <link href="css/blobcat.min.css" type="text/css" rel="stylesheet">
+    <link href="css/twemoji.min.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+    <link href="https://klasa.js.org/#/static/css/main.css" rel="stylesheet">
+
+    <!--Custom Style-->
+    <style>
+        .one-full.column p, .one-full.column h1 { margin: 0; }
+      </style>
+	</head>
+	
+	<body>
+    <div class="center-object">
+      <div id="Loader"><div class="loader">Loading...</div></div>
     </div>
-  </nav>
 
-  <main>
-    <div class="wrapper"></div>
-  </main>
+      <div class="fullscreen">
+          
+          <div class="background" style="background-image: url('https://sparky-discord-bot.github.io/Sparky-Website/assets/background.png');"></div>
+          <div class="center-object">
+            <section class="me unset">
+              <img draggable="false" src="https://sparky-discord-bot.github.io/Sparky-Website/assets/sparkylogo.png" class="image-title">
+              <h1 class="title">Sparky Discord Bot</h1>
+            </section>
+            <div class="buttons">
+                <a href="https://discord.gg/6QJUM7R" class="btn discord animation hover" target="_blank">Discord</a>
+                <a href=https://discordapp.com/oauth2/authorize?client_id=486232921078890501&scope=bot&permissions=271581214" class="btn wisteria animation hover">Invite</a>
+                <a href="https://github.com/Sparky-Discord-Bot/Sparky" class="btn github animation hover" target="_blank">GitHub</a>
+                <a href="docs.html"class="btn youtube animation hover">Docs</a>
+            </div>
+          </div>
+      </div>
 
-  <footer>
-    <div class="bottomwrapper">
-    <p>Owned by Dentz. These bots are not open-source.</p>
-  </div>
-  </footer>
-</body>
-
-</html>
+            
+              <footer class="center box-container primary no-border-radius">
+                  <p class="no-margin">
+                      
+               Copyright &copy; Sparky Discord Bot 2018
+                
+                  </p>
+                </footer>
+   
+	</body>
+	</html>
