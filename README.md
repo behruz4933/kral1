@@ -1,31 +1,34 @@
-<div align="center">
- <br>
- 
-Discord Bot list
-=================
-</div>
+# Discord bots website template
+
+Amazing website with good UI design for new Discord bots, designed with Bootstrap & now-ui-kit available in English and Arabic.
+
+![Screenshot](https://raw.githubusercontent.com/NourEldienHE/Discord-bot-website-template/master/Screenshot_2.png)
 
 
-# About
-This botlist is discontinued and no longer exists. Feel free to host your own instance of it.
-![Front Page](/screenshots/front.png?raw=true "Front Page")
-![Dark Theme](/screenshots/dark.png?raw=true "Dark Theme")
-![Bot Page](/screenshots/bot.png?raw=true "Bot Page")
+## Getting Started
+
+Download or fork the repo to get started!
+
+### Installing
+
+Download or fork the repo
+
+```
+git clone https://github.com/NourEldienHE/Discord-bot-website-template.git
+```
+
+Open index.html and start to use the website 
+
+## Built With
+
+* [Bootstrap](https://getbootstrap.com/) - The web framework used
+* [Now-ui-kit](https://demos.creative-tim.com/now-ui-kit/index.html) - Dependency Management
+
+## Authors
+
+[Nouridio](https://github.com/NourEldienHE)
 
 
-# Features
- - Markdown and Iframe descriptions
- - Minimalistic website (with dark theme)
- - Bot resubmit option
- - Bot widget
- - Search option
- - Easy setup (all customisation features in one file)
- - Discord bot for bot verification
- - Server count API
+## License
 
-# Contributing
-You want to contribute? Go ahead and make a pull request and I'll look into it as soon as I can. 
-
-# Copying
-No problem, just check the [`LICENSE.md`](LICENSE.md).
-Check the [wiki](https://github.com/Ankrad/Discord-Bot-List/wiki) for a setup guide.
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
