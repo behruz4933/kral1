@@ -1,37 +1,47 @@
-# Onyx Discord Bot Website
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
-![GitHub last commit](https://img.shields.io/github/last-commit/google/skia.svg)
+# Discord Bot Client
+Allows you to use your bot, just like any other user account, except Friends, Groups and Voice
 
-Onyx has her very own home on the Internet now, and all updates to commands tables, features, and more will be posted on this website,
-as well as on her GitHub README file.
+## [Demo](https://discordclient.com/)
+Direct host of the Github Repository without modifications
+WIP
 
-It includes some notable pages, which may be of important to those who wish to add Onyx to their Discord server.
+## Install
+- Install [Nodejs](https://nodejs.org/en/download/)
+- Install Dependencies:
+```
+npm i
+```
 
-## Visit It
-[Click here to visit Onyx's website.](https://silvia-odwyer.github.io/Onyx-Discord-Bot-Website/)
+## Start
+```
+npm start
+```
+Now navigate to http://localhost:3000/
 
-## Screenshots
-![Onyx + Discord = Love](https://github.com/silvia-odwyer/Onyx-Discord-Bot-Website/blob/master/media/onyxdiscord2.png "Onyx + Discord = Love")
+## Functions
+- View Guilds (Lazy load them)  `Have not been tested for more than 100 Servers`
+- Manage Guilds (Name, Image, Audit log, Emoji, Webhooks, Invites, Bans, Widget, Moderation, Roles)
+- Manage Channels (Add, Delete, Name, Permissions, Invites, Webhooks, Slowmode, NSFW, Topic)
+- Messages (Send, View History, Embeds, View Reactions, Add/Remove Reactions, Delete, Edit, Pin)
+- Create a Guild (if the bot has fewer than 10 Servers)
+- Even supports mobile smartphones
 
-![Onyx Labs: Experimental division](https://github.com/silvia-odwyer/Onyx-Discord-Bot-Website/blob/master/GIFs/onyx_labs.gif "Onyx Labs: Experimental division")
+## DM
+If you load the page, DM's will show up, if a new user writes the bot then you can answer him
 
-![Onyx Labs: Experimental division](https://github.com/silvia-odwyer/Onyx-Discord-Bot-Website/blob/master/GIFs/onyx_labs_scrolldown.gif "Onyx Labs: Experimental division")
+## Planned Features
+- Direct Messages (DM) history list
+- Change Status
+- React with other emojis (Nitro)
+- GIF Search
+- Send Files
+- Voice Support
+- See Guild members
 
-## Scrolling Animations
-Scrolling animations are using the amazing ScrollMagic.js library, in case you're wondering! Creating scroll animations
-with this library was such a great experience, and I'd recommend it for anyone who wants to add some dynamic animation to their website.
+## Not supported by discord api
+- Message search
+- Video
+- Friends
+- DM Groups
+- Join server with invite link
 
-## Onyx LABS
-This is the experimental division, containing some new features that Onyx may have in the future. It has a slightly different 
-UI to the rest of the website, in order to enhance its experimental feel.
-
-## Contributors
-Pull requests are always welcome! If you want to add more content to the website, have artwork you'd like to submit, or just 
-want to fix something up, submit away! ^^
-
-## Invite To Your Server
-[Just click here to invite Onyx to your server!](https://discordapp.com/oauth2/authorize?&client_id=444948120573313024&scope=bot&permissions=0)
-
-## Test Onyx Out In This Support Server
-If you want to test Onyx out before adding her to your server, [just join this server](https://discord.gg/cSWHaEK), and leave when you want.
-Onyx runs 24/7, so she'll always be online. :D
