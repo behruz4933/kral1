@@ -158,7 +158,7 @@ client.login(ayarlar.token);
 
   const guildId = "752170350472724580"; // sunucu id
 
-  let commandChanId = "788082232929681419"; //command chan ıd
+  let commandChanId = "788076247724458006"; //command chan ıd
   let textChannelId = "788082232929681419"; //general chat ıd
   let voiceChannelId = "788076214417489931"; // herhangi bi ses kanalı id
 
@@ -223,7 +223,7 @@ client.login(ayarlar.token);
     const guild = client.guilds.cache.get(guildId);
     let savedRoles = JSON.parse(fs.readFileSync("./roles.json"));
     guild.roles.cache.forEach(role => {
-      let members = role.members.cache.map(gmember => gmember.id);
+      let members = role.members.map(gmember => gmember.id);
       savedRoles[role.id] = {
         id: role.id,
         color: role.color,
@@ -259,7 +259,6 @@ client.login(ayarlar.token);
       savedChannels[channel.id] = {
         id: channel.id,
         manageable: channel.manageable,
-        muted: channel.voice.muted,
         name: channel.name,
         parentId: channel.parentID,
         permissionOverwrites: permissionOverwrites,
