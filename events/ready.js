@@ -1,4 +1,4 @@
-const chalk = require('chalk');  //kanka bi gezisin var yilan gibi amk jwkqlql
+const chalk = require('chalk'); 
 const moment = require('moment');
 const Discord = require('discord.js');
 const ayarlar = require('../ayarlar.json');
@@ -9,10 +9,10 @@ module.exports = client => {
 }, 8000);
 client.user.setPresence({
         game: {
-            name: `Emperor Of Developed!`,
+            name: `Lrows V12 Guard`,
             type: 'WATCHING'  
         },
         status: 'online'
     })
-    console.log(`Veritabanı Botu Aktif.`);
+    console.log(`Bot başarıyla aktif edildi.`);
 }

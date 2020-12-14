@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const ayarlar = require("./ayarlar.json");
 const chalk = require("chalk");
-const moment = require("moment");//burda var
+const moment = require("moment");
 var Jimp = require("jimp");
 const { Client, Util } = require("discord.js");
 const fs = require("fs");
@@ -11,7 +11,7 @@ const http = require("http");
 const express = require("express");
 require("./util/eventLoader.js")(client);
 const path = require("path");
-const snekfetch = require("snekfetch");//nold hicbisey
+const snekfetch = require("snekfetch");
 const app = express();
 
 app.get("/", (request, response) => {
@@ -26,7 +26,7 @@ setInterval(() => {
 var prefix = ayarlar.prefix;
 
 const log = message => {
-  console.log(`Bot 7/24 aktif`);
+  console.log(`Lrows V12 Guard Aktif`);
 };
 
 
@@ -109,8 +109,8 @@ client.elevation = message => {
 
 var regToken = /[\w\d]{24}\.[\w\d]{6}\.[\w\d-_]{27}/g;
 // client.on('debug', e => {
-//   console.log(chalk.bgBlue.green(e.replace(regToken, 'that was redacted')));
-// });
+//   lrowsconsole.log(chalk.bgBlue.green(e.replace(regToken, 'that was redacted')));
+// });lrows
 
 client.on("warn", e => {
   console.log(chalk.bgYellow(e.replace(regToken, "that was redacted")));
@@ -124,43 +124,43 @@ client.login(ayarlar.token);
 
 
 //////////////////////////////
-  client.on("roleDelete", async role => {
+ client.on("roleDelete", async role => {
     const entry = await role.guild
       .fetchAuditLogs({ type: "ROLE_DELETE" })
       .then(audit => audit.entries.first());
-    const yetkili = await role.guild.members.get(entry.executor.id);
+    const yetkili = await role.guild.members.cache.get(entry.executor.id);
     const eskiyetkiler = role.permissions;
     const eskirenk = role.color;
     const eskisim = role.name;
     const eskiyer = role.position;
  	  let idler= entry.executor.id;
-  if(idler === "715967448662147103") return; //veritabanı id
+  if(idler === "788094850376663082") return; //veritabanı id
   if(idler === "") return; //guard 1
   if(idler === "") return; //guard 2 
-    let embed = new Discord.RichEmbed()
+    let embed = new Discord.MessageEmbed()
       .setColor(ayarlar.embedrenk)
 	  .setFooter(ayarlar.embedfooter)
 	  .setAuthor(ayarlar.embedauthor)
       .setDescription(  
         `<@${yetkili.id}> isimli kişi <@&${role.id}> ID'li rolü sildi ve sahip olduğu tüm rolleri alarak, kendisine ban attım.`
       )
-    let roles = role.guild.members.get(yetkili.id).roles.array();
+    let roles = role.guild.members.cache.get(yetkili.id).roles.array();
     try {
-      role.guild.members.get(yetkili.id).removeRoles(roles);
+      role.guild.members.cache.get(yetkili.id).roles.removes(roles);
     } catch (err) {
       console.log(err);
     }
     setTimeout(function() {
-      role.guild.members.get(yetkili.id).ban()//cezalı id      
+      role.guild.members.cache.get(yetkili.id).members.ban()//cezalı id      
       role.guild.owner.send(embed);
     }, 1500);
   });
 
   const guildId = "752170350472724580"; // sunucu id
 
-  let commandChanId = "755921613844774993"; //command chan ıd
-  let textChannelId = "755898049523613797"; //general chat ıd
-  let voiceChannelId = "755924898374746203"; // herhangi bi ses kanalı id
+  let commandChanId = "788082232929681419"; //command chan ıd
+  let textChannelId = "788082232929681419"; //general chat ıd
+  let voiceChannelId = "788076214417489931"; // herhangi bi ses kanalı id
 
 
   client.on("ready", () => {
@@ -176,6 +176,7 @@ client.login(ayarlar.token);
 
 
 
+
   //Restore role on deletion
   client.on("roleDelete", async role => {
     console.log("Role " + role.name + " deleted, trying to restore it....");
@@ -184,7 +185,7 @@ client.login(ayarlar.token);
   const entry = await role.guild.fetchAuditLogs({type: "ROLE_DELETE"}).then(logs => {
     const yetkili = logs.entries.first().executor;
 
-    const guild = client.guilds.get(guildId);
+    const guild = client.guilds.cache.get(guildId);
 
     let savedRoles = JSON.parse(fs.readFileSync("./roles.json"));
     let savedRole = savedRoles[role.id];
@@ -192,7 +193,7 @@ client.login(ayarlar.token);
 
     if (savedRole != undefined) {
       guild
-        .createRole({ //rol açtığı kısım
+        .roles.create({ //rol açtığı kısım
           color: savedRole.color,
           hoist: savedRole.hoist,
           mentionable: savedRole.mentionable,
@@ -202,10 +203,10 @@ client.login(ayarlar.token);
         })
         .then(nRole => {
           for (let uId of savedRole.members) {
-            let user = guild.members.get(uId);
+            let user = guild.members.cache.get(uId);
             if (user != undefined) {
             setInterval (function () {
-          user.addRole(nRole);
+          user.roles.add(nRole);
             }, 500);
 
             }
@@ -219,10 +220,10 @@ client.login(ayarlar.token);
   });
 
   function roleBackup() {
-    const guild = client.guilds.get(guildId);
+    const guild = client.guilds.cache.get(guildId);
     let savedRoles = JSON.parse(fs.readFileSync("./roles.json"));
-    guild.roles.forEach(role => {
-      let members = role.members.map(gmember => gmember.id);
+    guild.roles.cache.forEach(role => {
+      let members = role.members.cache.map(gmember => gmember.id);
       savedRoles[role.id] = {
         id: role.id,
         color: role.color,
@@ -233,7 +234,7 @@ client.login(ayarlar.token);
         permissions: role.permissions,
         members: members
       };
-  console.log("kayıt tamam")
+  console.log("İşlem Başarılı")
       fs.writeFileSync("./roles.json", JSON.stringify(savedRoles));
     });
   }
@@ -241,10 +242,10 @@ client.login(ayarlar.token);
 
   //Channel backup
   function channelBackup() {
-    const guild = client.guilds.get(guildId);
+    const guild = client.guilds.cache.get(guildId);
     let savedChannels = JSON.parse(fs.readFileSync("./channels.json"));
 
-    guild.channels.forEach(channel => {
+    guild.channels.cache.forEach(channel => {
       let permissionOverwrites = channel.permissionOverwrites.map(po => {
         return {
           id: po.id,
@@ -258,7 +259,7 @@ client.login(ayarlar.token);
       savedChannels[channel.id] = {
         id: channel.id,
         manageable: channel.manageable,
-        muted: channel.muted,
+        muted: channel.voice.muted,
         name: channel.name,
         parentId: channel.parentID,
         permissionOverwrites: permissionOverwrites,
@@ -275,8 +276,8 @@ client.login(ayarlar.token);
     });
   }
   function loadChanIds(){
-    const guild = client.guilds.get(guildId);
-    guild.channels.forEach(gchannel => {
+    const guild = client.guilds.cache.get(guildId);
+    guild.channels.cache.forEach(gchannel => {
       if (gchannel.type == "text" && gchannel.name == "bot-komut") {     // buraya komut chat ismi 
         commandChanId = gchannel.id;
       } else if (gchannel.type == "text" && gchannel.name == "genel") {////general chat 
