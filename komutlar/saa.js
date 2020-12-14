@@ -7,7 +7,7 @@ exports.run = async (client, message, args) => {
   Embed.setTitle(`Senin avatarın!`);
   Embed.setThumbnail(avatar);
   Embed.setColor(`RANDOM`);
-  Embed.setDescription(`Arrow Bot`);
+  Embed.setDescription(`Lrows Bot`);
   return message.channel.send(Embed);
 };
 

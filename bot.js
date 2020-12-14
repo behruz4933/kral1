@@ -29,6 +29,7 @@ const log = message => {
   console.log(`Bot 7/24 aktif`);
 };
 
+
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 fs.readdir("./komutlar/", (err, files) => {
@@ -120,15 +121,6 @@ client.on("error", e => {
 });
 
 client.login(ayarlar.token);
-
-
-
-
-
-
-
-
-
 
 
 //////////////////////////////
