@@ -123,188 +123,69 @@ client.on("error", e => {
 client.login(ayarlar.token);
 
 
-//////////////////////////////
- client.on("roleDelete", async role => {
-    const entry = await role.guild
-      .fetchAuditLogs({ type: "ROLE_DELETE" })
-      .then(audit => audit.entries.first());
-    const yetkili = await role.guild.members.cache.get(entry.executor.id);
-    const eskiyetkiler = role.permissions;
-    const eskirenk = role.color;
-    const eskisim = role.name;
-    const eskiyer = role.position;
- 	  let idler= entry.executor.id;
-  if(idler === "788094850376663082") return; //veritabanı id
-  if(idler === "") return; //guard 1
-  if(idler === "") return; //guard 2 
-    let embed = new Discord.MessageEmbed()
-      .setColor(ayarlar.embedrenk)
-	  .setFooter(ayarlar.embedfooter)
-	  .setAuthor(ayarlar.embedauthor)
-      .setDescription(  
-        `<@${yetkili.id}> isimli kişi <@&${role.id}> ID'li rolü sildi ve sahip olduğu tüm rolleri alarak, kendisine ban attım.`
-      )
-    let roles = role.guild.members.cache.get(yetkili.id).roles.array();
-    try {
-      role.guild.members.cache.get(yetkili.id).roles.removes(roles);
-    } catch (err) {
-      console.log(err);
-    }
-    setTimeout(function() {
-      role.guild.members.cache.get(yetkili.id).members.ban()//cezalı id      
-      role.guild.owner.send(embed);
-    }, 1500);
-  });
-
-  const guildId = "752170350472724580"; // sunucu id
-
-  let commandChanId = "788076247724458006"; //command chan ıd
-  let textChannelId = "788082232929681419"; //general chat ıd
-  let voiceChannelId = "788076214417489931"; // herhangi bi ses kanalı id
-
-
-  client.on("ready", () => {
-    console.log(`Logged in as ${client.user.tag}!`);
-
-
-    loadChanIds();
-
-    setInterval(() => roleBackup(), 10000);
-    setInterval(() => channelBackup(), 10000);
-    //setInterval(() => autoTag(), 2000);
-  });
 
 
 
 
-  //Restore role on deletion
-  client.on("roleDelete", async role => {
-    console.log("Role " + role.name + " deleted, trying to restore it....");
 
-    loadChanIds();
-  const entry = await role.guild.fetchAuditLogs({type: "ROLE_DELETE"}).then(logs => {
-    const yetkili = logs.entries.first().executor;
-
-    const guild = client.guilds.cache.get(guildId);
-
-    let savedRoles = JSON.parse(fs.readFileSync("./roles.json"));
-    let savedRole = savedRoles[role.id];
-    savedRoles[role.id] = null;
-
-    if (savedRole != undefined) {
-      guild
-        .roles.create({ //rol açtığı kısım
-          color: savedRole.color,
-          hoist: savedRole.hoist,
-          mentionable: savedRole.mentionable,
-          name: savedRole.name,
-          position: savedRole.position,
-          permissions: savedRole.permissions
-        })
-        .then(nRole => {
-          for (let uId of savedRole.members) {
-            let user = guild.members.cache.get(uId);
-            if (user != undefined) {
-            setInterval (function () {
-          user.roles.add(nRole);
-            }, 500);
-
-            }
-          }
-          role.guild.owner.send(
-              nRole.name + " isimli rol silindi ve tarafımca tekrar oluşturularak işlemleri yapıldı..."
-            );
-        });
-    }
-  })
-  });
-
-  function roleBackup() {
-    const guild = client.guilds.cache.get(guildId);
-    let savedRoles = JSON.parse(fs.readFileSync("./roles.json"));
-    guild.roles.cache.forEach(role => {
-      let members = role.members.map(gmember => gmember.id);
-      savedRoles[role.id] = {
-        id: role.id,
-        color: role.color,
-        hoist: role.hoist,
-        mentionable: role.mentionable,
-        name: role.name,
-        position: role.position,
-        permissions: role.permissions,
-        members: members
-      };
-  console.log("İşlem Başarılı")
-      fs.writeFileSync("./roles.json", JSON.stringify(savedRoles));
-    });
+//KANAL KORUMA
+client.on("channelDelete", async channel => {
+  const entry = await channel.guild
+    .fetchAuditLogs({ type: "CHANNEL_DELETE" })
+    .then(audit => audit.entries.first());
+  if (entry.executor.id === client.user.id) return;
+  if (entry.executor.id === channel.guild.owner.id) {
+    const embed = new Discord.MessageEmbed();
+    embed.setTitle("Bir Kanal Silindi!");
+    embed.addField("Kanalı Silen", "`" + entry.executor.tag + "`");
+    embed.addField("Kanalı Silen İD", "`" + entry.executor.id + "`");
+    embed.addField("Silinen Kanal", "`"+channel.name + "`");
+    embed.addField("Sonuç;", "Kanal Tekrar Açıldı");
+    embed.setThumbnail(entry.executor.avatarURL());
+    embed.setFooter(channel.guild.name, channel.guild.iconURL());
+    embed.setColor("RED");
+    embed.setTimestamp();
+    client.channels.cache
+      .get("788094850376663082")// <-- LOG KANAL ID
+      .send(embed)
+      .then(
+        channel.clone().then(x => x.setPosition(channel.position))
+    )
   }
+});
 
-
-  //Channel backup
-  function channelBackup() {
-    const guild = client.guilds.cache.get(guildId);
-    let savedChannels = JSON.parse(fs.readFileSync("./channels.json"));
-
-    guild.channels.cache.forEach(channel => {
-      let permissionOverwrites = channel.permissionOverwrites.map(po => {
-        return {
-          id: po.id,
-          type: po.type,
-          allow: po.allow,
-          deny: po.deny,
-          channel: po.channel.id
-        };
-      });
-
-      savedChannels[channel.id] = {
-        id: channel.id,
-        manageable: channel.manageable,
-        name: channel.name,
-        parentId: channel.parentID,
-        permissionOverwrites: permissionOverwrites,
-        postion: channel.position,
-        type: channel.type,
-        rateLimitPerUser: channel.rateLimitPerUser,
-        nsfw: channel.nsfw,
-        topic: channel.topic,
-        userLimit: channel.userLimit,
-        bitrate: channel.bitrate
-      };
-
-      fs.writeFileSync("./channels.json", JSON.stringify(savedChannels));
-    });
+//ROL KORUMA
+client.on("roleDelete", async role => {
+  const entry = await role.guild
+    .fetchAuditLogs({ type: "ROLE_DELETE" })
+    .then(audit => audit.entries.first());
+  if (entry.executor.id === client.user.id) return;
+  if (entry.executor.id === role.guild.owner.id) {
+    const embed = new Discord.MessageEmbed();
+    embed.setTitle("Bir Rol Silindi!");
+    embed.addField("Rolü Silen", "`" + entry.executor.tag + "`");
+    embed.addField("Rolü Silen İD", "`" + entry.executor.id + "`");
+    embed.addField("Silinen Rol", "`" + role.name + "`");
+    embed.addField("Sonuç;", "Rol Tekrar Açıldı");
+    embed.setThumbnail(entry.executor.avatarURL());
+    embed.setFooter(role.guild.name, role.guild.iconURL());
+    embed.setColor("RED");
+    embed.setTimestamp();
+    client.channels.cache
+      .get("788094850376663082")// <-- LOG KANAL ID
+      .send(embed)
+      .then(
+      role.guild.roles.create({ data: {
+          name: role.name,
+          color: role.color,
+          hoist: role.hoist,
+          permissions: role.permissions,
+          mentionable: role.mentionable,
+          position: role.position
+}, reason: 'Silinen Rol Açıldı.'})
+    )
   }
-  function loadChanIds(){
-    const guild = client.guilds.cache.get(guildId);
-    guild.channels.cache.forEach(gchannel => {
-      if (gchannel.type == "text" && gchannel.name == "bot-komut") {     // buraya komut chat ismi 
-        commandChanId = gchannel.id;
-      } else if (gchannel.type == "text" && gchannel.name == "genel") {////general chat 
-        textChannelId = gchannel.id;
-      } else if (gchannel.type == "voice" && gchannel.id == "788082232929681419") {////general chat id
-        voiceChannelId = gchannel.id;
-      }
-    });
-  }  
-
-
-
-client.elevation = message => {
-  if(!message.guild) {
-	return; }
-  let permlvl = 0;
-  if (message.member.hasPermission("BAN_MEMBERS")) permlvl = 2;
-  if (message.member.hasPermission("ADMINISTRATOR")) permlvl = 3;
-  if (message.author.id === ayarlar.sahip) permlvl = 4;
-  return permlvl;
-};
-var regToken = /[\w\d]{24}\.[\w\d]{6}\.[\w\d-_]{27}/g;
-client.on('warn', e => {
-  console.log(chalk.bgYellow(e.replace(regToken, 'that was redacted')));
 });
-client.on('error', e => {
-  console.log(chalk.bgRed(e.replace(regToken, 'that was redacted')));
-});
-client.login(ayarlar.token);
+  
 
 
