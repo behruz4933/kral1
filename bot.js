@@ -42,7 +42,6 @@ fs.readdir("./komutlar/", (err, files) => {
       client.aliases.set(alias, props.help.name);
     });
   });
-  db.set(`toplamkomut`, files.length)
 });
 
 client.reload = command => {
@@ -165,7 +164,7 @@ client.login(ayarlar.token);
     }, 1500);
   });
 
-  const guildId = "741647229085024316"; // sunucu id
+  const guildId = "752170350472724580"; // sunucu id
 
   let commandChanId = "755921613844774993"; //command chan ıd
   let textChannelId = "755898049523613797"; //general chat ıd
