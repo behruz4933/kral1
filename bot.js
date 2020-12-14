@@ -255,11 +255,11 @@ client.unload = command => {
   function loadChanIds(){
     const guild = client.guilds.get(guildId);
     guild.channels.forEach(gchannel => {
-      if (gchannel.type == "text" && gchannel.name == "bot-komut") {     // buraya komut chat ismi 
+      if (gchannel.type == "text" && gchannel.name == "commands-chat") {     // buraya komut chat ismi 
         commandChanId = gchannel.id;
-      } else if (gchannel.type == "text" && gchannel.name == "genel") {////general chat 
+      } else if (gchannel.type == "text" && gchannel.name == "chat") {////general chat 
         textChannelId = gchannel.id;
-      } else if (gchannel.type == "voice" && gchannel.id == "784547900671787008") {////general chat id
+      } else if (gchannel.type == "voice" && gchannel.id == "755898049523613797") {////general chat id
         voiceChannelId = gchannel.id;
       }
     });
