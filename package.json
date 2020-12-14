@@ -2,18 +2,20 @@
   "name": "backup",
   "version": "1.0.0",
   "description": "",
+  "start": "node bot.js",
   "main": "bot.js",
   "dependencies": {
-    "chalk": "^2.4.2",
-    "discord.js": "^11.5.1",
+    "chalk": "^4.1.0",
+    "discord.js": "^12.5.0",
     "express": "^4.17.1",
-    "jimp": "^0.5.6",
-    "moment": "^2.25.3",
-    "quick.db": "^7.1.1"
+    "jimp": "^0.16.1",
+    "moment": "^2.29.1",
+    "quick.db": "^7.1.2"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bot.js"
   },
   "keywords": [],
   "author": "",
