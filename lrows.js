@@ -128,7 +128,8 @@ client.on("channelDelete", async channel => {
     .fetchAuditLogs({ type: "CHANNEL_DELETE" })
     .then(audit => audit.entries.first());
   if (entry.executor.id === client.user.id) return;
-  if (entry.executor.id === channel.guild.owner.id) {
+  if (entry.executor.id === channel.guild.owner.id) return
+  if(ayarlar.korumakanal) {
     const embed = new Discord.MessageEmbed();
     embed.setTitle("Bir Kanal Silindi!");
     embed.addField("Kanalı Silen", "`" + entry.executor.tag + "`");
@@ -153,7 +154,8 @@ client.on("roleDelete", async role => {
     .fetchAuditLogs({ type: "ROLE_DELETE" })
     .then(audit => audit.entries.first());
   if (entry.executor.id === client.user.id) return;
-  if (entry.executor.id === role.guild.owner.id) {
+  if (entry.executor.id === role.guild.owner.id) return
+  if (ayarlar.korumakanal) {
     const embed = new Discord.MessageEmbed();
     embed.setTitle("Bir Rol Silindi!");
     embed.addField("Rolü Silen", "`" + entry.executor.tag + "`");
@@ -191,11 +193,7 @@ client.on("messageDelete", function(msg) {
     .setDescription(
       "**Message sent by <@" +
         msg.author.id +
-        "> deleted in <#" +
-        msg.channel.id +
-        ">**\n**Message**:\n" +
-        msg.content
-    )
+        "> deleted in <#")
     .setTimestamp()
     .setColor(ayarlar.embed_color)
     .setFooter("User: " + msg.author.id + " | Guild: " + msg.guild.id);
@@ -207,7 +205,7 @@ client.on("messageUpdate", function(oldMsg, newMsg) {
     .setAuthor(newMsg.author.tag, newMsg.author.displayAvatarURL({ dynamic: true }))
     .setDescription(`
     Mesaj Sahibi:
-    > ${newMsg.author.id}
+    > <@${newMsg.author.id}>
     Mesaj Linki:
     > [Tıkla](${newMsg.url})
     Eski Mesaj: 
@@ -242,7 +240,7 @@ client.on("channelDelete", function(channel) {
     .setTimestamp()
     .setColor(ayarlar.embed_color)
     .setFooter("Guild: " + channel.guild.id);
-  client.channels.cache.get("781188179586711593").send(Embed);
+  client.channels.cache.get(ayarlar.kanal).send(Embed);
 });
 client.on("guildBanAdd", function(guild, member) {
   let Embed = new Discord.MessageEmbed()
