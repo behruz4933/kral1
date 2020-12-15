@@ -199,10 +199,10 @@ client.on("messageDelete", function(msg) {
     .setTimestamp()
     .setColor(ayarlar.embed_color)
     .setFooter("User: " + msg.author.id + " | Guild: " + msg.guild.id);
-  client.channels.cache.get("781188179586711593").send(Embed);
+  client.channels.cache.get(ayarlar.kanal).send(Embed);
 });
 client.on("messageUpdate", function(oldMsg, newMsg) {
-  if (
+  /*if (
     !newMsg.partial ||
     oldMsg.content == newMsg.content ||
     !newMsg.content ||
@@ -210,25 +210,19 @@ client.on("messageUpdate", function(oldMsg, newMsg) {
     oldMsg.author.bot ||
     oldMsg.guild == null
   )
-    return;
+    return;*/
   let Embed = new Discord.MessageEmbed()
-    .setAuthor(
-      newMsg.author.tag,
-      newMsg.author.displayAvatarURL({ dynamic: true })
-    )
-    .setDescription(
-      "**Message sent by <@" +
-        newMsg.author.id +
-        "> edited in <#" +
-        newMsg.channel.id +
-        ">**\n**Before**:\n" +
-        oldMsg.content +
-        "\n\n**After**:\n" +
-        newMsg.content +
-        "\n\n[Message Link](" +
-        newMsg.url +
-        ")"
-    )
+    .setAuthor(newMsg.author.tag, newMsg.author.displayAvatarURL({ dynamic: true }))
+    .setDescription(`
+    Mesaj Sahibi:
+    > ${newMsg.author.id}
+    Mesaj Linki:
+    > [Tıkla](${})
+    Eski Mesaj: 
+    > ${oldMsg.content}
+    Yeni Mesaj: 
+    > ${newMsg.content}
+    `)
     .setTimestamp()
     .setColor(ayarlar.embed_color)
     .setFooter("User: " + newMsg.author.id + " | Guild: " + newMsg.guild.id);
