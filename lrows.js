@@ -264,8 +264,11 @@ client.on("guildBanRemove", function(guild, member) {
 });
 client.on("inviteCreate", function(invite) {
   let sınır = invite.temporary
-  if(sınır === false) return
-  sınır = ""
+  if(sınır === false) {
+  sınır = "Hayır"
+    } else if(sınır === true) {
+  sınır = "Evet"
+      }
   let Embed = new Discord.MessageEmbed()
     .setAuthor(invite.guild.name, invite.guild.iconURL({ dynamic: true }))
     .setDescription("**Invite Created:** " + invite.url)
