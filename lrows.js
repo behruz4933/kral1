@@ -190,10 +190,12 @@ client.on("roleDelete", async role => {
 client.on("messageDelete", function(msg) {
   let Embed = new Discord.MessageEmbed()
     .setAuthor(msg.author.tag, msg.author.displayAvatarURL({ dynamic: true }))
-    .setDescription(
-      "**Message sent by <@" +
-        msg.author.id +
-        "> deleted in <#")
+    .setDescription(`
+    Mesaj Sahibi:
+    > <@${msg.author.id}>
+    Mesaj İçeriği:
+    > ${msg.content}
+    `)
     .setTimestamp()
     .setColor(ayarlar.embed_color)
     .setFooter("User: " + msg.author.id + " | Guild: " + msg.guild.id);
@@ -220,17 +222,17 @@ client.on("messageUpdate", function(oldMsg, newMsg) {
 });
 client.on("channelCreate", function(channel) {
   let Embed = new Discord.MessageEmbed()
-    .setAuthor(
-      channel.guild.name,
-      "https://cdn.discordapp.com/avatars/" +
-        channel.guild.id +
-        "/" +
-        channel.guild.icon
-    )
-    .setDescription("**New Channel Created**:\n<#" + channel.id + ">")
+    .setAuthor(channel.guild.name, "https://cdn.discordapp.com/avatars/" +channel.guild.id +"/" + channel.guild.icon)
+    .setDescription(`
+   **Bir Kanal Oluşturuldu**
+   
+   > ${channel.name}
+   > ${channel.id}
+   > ${channel.position}
+    `)
     .setTimestamp()
     .setColor(ayarlar.embed_color)
-    .setFooter("Guild: " + channel.guild.id);
+    .setFooter("Guild: " + channel.guild.name);
   client.channels.cache.get(ayarlar.kanal).send(Embed);
 });
 client.on("channelDelete", function(channel) {
@@ -261,16 +263,19 @@ client.on("guildBanRemove", function(guild, member) {
   client.channels.cache.get(ayarlar.kanal).send(Embed);
 });
 client.on("inviteCreate", function(invite) {
+  let sınır = invite.temporary
+  if(sınır === false) return
+  sınır = ""
   let Embed = new Discord.MessageEmbed()
     .setAuthor(invite.guild.name, invite.guild.iconURL({ dynamic: true }))
     .setDescription("**Invite Created:** " + invite.url)
-    .addField("By:", "```" + invite.inviter.tag + "```", true)
-    .addField("Channel:", "```" + invite.channel.name + "```", true)
-    .addField("Member Count:", "```" + invite.memberCount + "```", true)
-    .addField("Uses:", "```" + invite.uses + "```", true)
+    .addField("Açan:", "```" + invite.inviter.tag + "```", true)
+    .addField("Kanal:", "```" + invite.channel.name + "```", true)
+   // .addField(":", "```" + invite.memberCount + "```", true)
+    .addField("Kullanım Sayısı:", "```" + invite.uses + "```", true)
     .addField("Max Age:", "```" + invite.maxAge + "```", true)
-    .addField("Temporary?", "```" + invite.temporary + "```", true)
-    .addField("Expires At:", "```" + invite.expiresAt + "```")
+    .addField("Sınırsızmı", "```" + sınır + "```", true)
+    .addField("Bitiş Tarihi:", "```" + invite.expiresAt + "```")
     .setTimestamp()
     .setColor(ayarlar.embed_color)
     .setFooter(
