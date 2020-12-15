@@ -5,6 +5,7 @@ const ayarlar = require('../ayarlar.json');
 var prefix = ayarlar.prefix;
 
 module.exports = client => {
+  console.log(`[${client.user.username}] İle Giriş Yapıldı`)
  setInterval(function() {
 }, 8000);
 client.user.setPresence({
