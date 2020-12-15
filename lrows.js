@@ -202,22 +202,14 @@ client.on("messageDelete", function(msg) {
   client.channels.cache.get(ayarlar.kanal).send(Embed);
 });
 client.on("messageUpdate", function(oldMsg, newMsg) {
-  /*if (
-    !newMsg.partial ||
-    oldMsg.content == newMsg.content ||
-    !newMsg.content ||
-    !oldMsg.content ||
-    oldMsg.author.bot ||
-    oldMsg.guild == null
-  )
-    return;*/
+  if(newMsg.author.bot) return
   let Embed = new Discord.MessageEmbed()
     .setAuthor(newMsg.author.tag, newMsg.author.displayAvatarURL({ dynamic: true }))
     .setDescription(`
     Mesaj Sahibi:
     > ${newMsg.author.id}
     Mesaj Linki:
-    > [Tıkla](${})
+    > [Tıkla](${newMsg.url})
     Eski Mesaj: 
     > ${oldMsg.content}
     Yeni Mesaj: 
