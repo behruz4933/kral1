@@ -337,6 +337,25 @@ client.on("emojiDelete", async emoji => {
   .setColor(ayarlar.embed_color)
   client.channels.cache.get(ayarlar.kanal).send(embed)
   })
+
+client.on("emojiCreate", async emoji => {
+  const embed = new Discord.MessageEmbed()
+  .setDescription(`
+  **Bir Emoji Oluşturuldı**
+  
+  Emoji Adı:
+  > ${emoji.name}
+  Emoji:
+  > ${emoji}
+  Emoji Linki:
+  > [Tıkla](${emoji.url})
+  Emoji ID:
+  > ${emoji.id}
+  `)
+  .setThumbnail(emoji.url)
+  .setColor(ayarlar.embed_color)
+  client.channels.cache.get(ayarlar.kanal).send(embed)
+  })
           
           
           
