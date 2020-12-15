@@ -128,7 +128,7 @@ client.on("channelDelete", async channel => {
     .fetchAuditLogs({ type: "CHANNEL_DELETE" })
     .then(audit => audit.entries.first());
   if (entry.executor.id === client.user.id) return;
-  if (entry.executor.id === channel.guild.owner.id) return
+//  if (entry.executor.id === channel.guild.owner.id) return
   if(ayarlar.korumakanal) {
     const embed = new Discord.MessageEmbed();
     embed.setTitle("Bir Kanal Silindi!");
@@ -154,7 +154,7 @@ client.on("roleDelete", async role => {
     .fetchAuditLogs({ type: "ROLE_DELETE" })
     .then(audit => audit.entries.first());
   if (entry.executor.id === client.user.id) return;
-  if (entry.executor.id === role.guild.owner.id) return
+ // if (entry.executor.id === role.guild.owner.id) return
   if (ayarlar.korumakanal) {
     const embed = new Discord.MessageEmbed();
     embed.setTitle("Bir Rol Silindi!");
@@ -299,7 +299,19 @@ client.on("roleCreate", function(role) {
 client.on("roleUpdate", function(oldRole, newRole) {
   let Embed = new Discord.MessageEmbed()
     .setAuthor(newRole.guild.name, newRole.guild.iconURL({ dynamic: true }))
-    .setDescription("**Role Updated:**:\n" + oldRole)
+    .setDescription(`
+    **Bir Rol Güncellendi**
+    
+    > **Eski Hali**
+    Adı: \`${oldRole.name}\`
+    Rengi: \`${oldRole.color}\`
+    Yetkileri: \`${oldRole.permissions}\`
+    
+    > **Yeni Hali**
+    Adı: \`${newRole.name}\`
+    Rengi: \`${newRole.color}\`
+    Yetkileri: \`${newRole.permissions}\`
+    `)
     //.addField("Changes:", "Will be done soon")
     .setTimestamp()
     .setColor(ayarlar.embed_color)
