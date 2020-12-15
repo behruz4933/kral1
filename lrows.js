@@ -124,11 +124,8 @@ client.login(ayarlar.token);
 
 
 
+//------------------------KANAL KORUMA-----------------------------\\
 
-
-
-
-//KANAL KORUMA
 client.on("channelDelete", async channel => {
   const entry = await channel.guild
     .fetchAuditLogs({ type: "CHANNEL_DELETE" })
@@ -154,7 +151,10 @@ client.on("channelDelete", async channel => {
   }
 });
 
-//ROL KORUMA
+
+
+//---------------------------ROL KORUMA------------------------------\\
+
 client.on("roleDelete", async role => {
   const entry = await role.guild
     .fetchAuditLogs({ type: "ROLE_DELETE" })
@@ -187,5 +187,104 @@ client.on("roleDelete", async role => {
   }
 });
   
+client.on("messageDelete",function (msg) {
+    let Embed = new Discord.MessageEmbed()
+        .setAuthor(msg.author.tag,msg.author.displayAvatarURL({dynamic:true}))
+        .setDescription("**Message sent by <@" + msg.author.id + "> deleted in <#" + msg.channel.id + ">**\n**Message**:\n" + msg.content)
+        .setTimestamp()
+        .setColor(config.embed_color)
+        .setFooter("User: " + msg.author.id + " | Guild: " + msg.guild.id)
+    client.channels.cache.get("781188179586711593").send(Embed)
+})
+client.on("messageUpdate",function (oldMsg,newMsg) {
+    if (!newMsg.partial || oldMsg.content == newMsg.content || !newMsg.content || !oldMsg.content || oldMsg.author.bot || oldMsg.guild == null) return;
+    let Embed = new Discord.MessageEmbed()
+        .setAuthor(newMsg.author.tag,newMsg.author.displayAvatarURL({dynamic:true}))
+        .setDescription("**Message sent by <@" + newMsg.author.id + "> edited in <#" + newMsg.channel.id + ">**\n**Before**:\n" + oldMsg.content + "\n\n**After**:\n" + newMsg.content + "\n\n[Message Link](" + newMsg.url + ")")
+        .setTimestamp()
+        .setColor(config.embed_color)
+        .setFooter("User: " + newMsg.author.id + " | Guild: " + newMsg.guild.id)
+    client.channels.cache.get("781188179586711593").send(Embed)
+})
+client.on("channelCreate",function (channel) {
+    let Embed = new Discord.MessageEmbed()
+        .setAuthor(channel.guild.name,"https://cdn.discordapp.com/avatars/" + channel.guild.id + "/" + channel.guild.icon)
+        .setDescription("**New Channel Created**:\n<#" + channel.id + ">")
+        .setTimestamp()
+        .setColor(config.embed_color)
+        .setFooter("Guild: " + channel.guild.id)
+    client.channels.cache.get("781188179586711593").send(Embed)
+})
+client.on("channelDelete",function (channel) {
+    let Embed = new Discord.MessageEmbed()
+        .setAuthor(channel.guild.name,channel.guild.iconURL({dynamic:true}))
+        .setDescription("**Channel Deleted**:\n" + channel.name)
+        .setTimestamp()
+        .setColor(config.embed_color)
+        .setFooter("Guild: " + channel.guild.id)
+    client.channels.cache.get("781188179586711593").send(Embed)
+})
+client.on("guildBanAdd",function (guild,member) {
+    let Embed = new Discord.MessageEmbed()
+        .setAuthor(guild.name,guild.iconURL({dynamic:true}))
+        .setDescription("**Member Banned:**:\n" + member.tag)
+        .setTimestamp()
+        .setColor(config.embed_color)
+        .setFooter("User: " + member.id + " | Guild: " + guild.id)
+    client.channels.cache.get("781188179586711593").send(Embed)
+})
+client.on("guildBanRemove",function (guild,member) {
+    let Embed = new Discord.MessageEmbed()
+        .setAuthor(guild.name,guild.iconURL({dynamic:true}))
+        .setDescription("**Member Unbanned:**:\n" + member.tag)
+        .setTimestamp()
+        .setColor(config.embed_color)
+        .setFooter("User: " + member.id + " | Guild: " + guild.id)
+    client.channels.cache.get("781188179586711593").send(Embed)
+})
+client.on("inviteCreate",function (invite) {
+    let Embed = new Discord.MessageEmbed()
+        .setAuthor(invite.guild.name,invite.guild.iconURL({dynamic:true}))
+        .setDescription("**Invite Created:** " + invite.url)
+        .addField("By:","```" + invite.inviter.tag + "```",true)
+        .addField("Channel:","```" + invite.channel.name + "```",true)
+        .addField("Member Count:","```" + invite.memberCount + "```",true)
+        .addField("Uses:","```" + invite.uses + "```",true)
+        .addField("Max Age:","```" + invite.maxAge + "```",true)
+        .addField("Temporary?","```" + invite.temporary + "```",true)
+        .addField("Expires At:","```" + invite.expiresAt + "```")
+        .setTimestamp()
+        .setColor(config.embed_color)
+        .setFooter("By: " + invite.inviter.tag + " | Guild: " + invite.guild.id,invite.inviter.displayAvatarURL({dynamic:true}))
+    client.channels.cache.get("781188179586711593").send(Embed)
+})
+client.on("roleCreate",function (role) {
+    let Embed = new Discord.MessageEmbed()
+        .setAuthor(role.guild.name,role.guild.iconURL({dynamic:true}))
+        .setDescription("**Role Created:**:\n" + role.name)
+        .setTimestamp()
+        .setColor(config.embed_color)
+        .setFooter( "Guild: " + role.guild.id)
+    client.channels.cache.get("781188179586711593").send(Embed)
+})
+client.on("roleUpdate",function (oldRole,newRole) {
+    let Embed = new Discord.MessageEmbed()
+        .setAuthor(newRole.guild.name,newRole.guild.iconURL({dynamic:true}))
+        .setDescription("**Role Updated:**:\n" + oldRole.name)
+        .addField("Changes:","Will be done soon")
+        .setTimestamp()
+        .setColor(config.embed_color)
+        .setFooter("Guild: " + newRole.guild.id)
+    client.channels.cache.get("781188179586711593").send(Embed)
+})
 
+client.on("roleDelete",function (role) {
+    let Embed = new Discord.MessageEmbed()
+        .setAuthor(role.guild.name,role.guild.iconURL({dynamic:true}))
+        .setDescription("**Role Deleted:**:\n" + role.name)
+        .setTimestamp()
+        .setColor(config.embed_color)
+        .setFooter( "Guild: " + role.guild.id)
+    client.channels.cache.get("781188179586711593").send(Embed)
+})
 
