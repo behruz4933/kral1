@@ -327,13 +327,14 @@ client.on("emojiDelete", async emoji => {
   Emoji Adı:
   > ${emoji.name}
   Emoji:
-  > \${emoji}
+  > ${emoji}
   Emoji Linki:
   > [Tıkla](${emoji.url})
   Emoji ID:
   > ${emoji.id}
   `)
-  
+  .setThumbnail(emoji.url)
+  .setColor(ayarlar.embed_color)
   client.channels.cache.get(ayarlar.kanal).send(embed)
   })
           
