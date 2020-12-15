@@ -299,8 +299,8 @@ client.on("roleCreate", function(role) {
 client.on("roleUpdate", function(oldRole, newRole) {
   let Embed = new Discord.MessageEmbed()
     .setAuthor(newRole.guild.name, newRole.guild.iconURL({ dynamic: true }))
-    .setDescription("**Role Updated:**:\n" + oldRole.name)
-    .addField("Changes:", "Will be done soon")
+    .setDescription("**Role Updated:**:\n" + oldRole)
+    //.addField("Changes:", "Will be done soon")
     .setTimestamp()
     .setColor(ayarlar.embed_color)
     .setFooter("Guild: " + newRole.guild.id);
@@ -310,7 +310,12 @@ client.on("roleUpdate", function(oldRole, newRole) {
 client.on("roleDelete", function(role) {
   let Embed = new Discord.MessageEmbed()
     .setAuthor(role.guild.name, role.guild.iconURL({ dynamic: true }))
-    .setDescription("**Role Deleted:**:\n" + role.name)
+    .setDescription(`
+    **Bir Rol Silindi**
+    Adı: \`${role.name}\`
+    Rengi: \`${role.color}\`
+    Yetkileri: \`${role.permissions}\`
+    `)
     .setTimestamp()
     .setColor(ayarlar.embed_color)
     .setFooter("Guild: " + role.guild.id);
