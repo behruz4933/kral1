@@ -318,3 +318,28 @@ client.on("roleCreate", function(role) {
     .setFooter("Guild: " + role.guild.id);
   client.channels.cache.get(ayarlar.kanal).send(Embed);
 });
+
+client.on("emojiDelete", async emoji => {
+  const embed = new Discord.MessageEmbed()
+  .setDescription(`
+  **Bir Emoji Silindi**
+  
+  Emoji Adı:
+  > ${}
+  `)
+  })
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
