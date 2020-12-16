@@ -239,7 +239,7 @@ client.on("channelCreate", function(channel) {
 client.on("guildBanAdd", function(guild, member) {
   let Embed = new Discord.MessageEmbed()
     .setAuthor(guild.name, guild.iconURL({ dynamic: true }))
-    .setDescription("**Member Banned:**:\n" + member.tag)
+    .setDescription("**Kişi Banlandı:**:\n" + member.tag)
     .setTimestamp()
     .setColor(ayarlar.embed_color)
     .setFooter("User: " + member.id + " | Guild: " + guild.id);
@@ -248,7 +248,7 @@ client.on("guildBanAdd", function(guild, member) {
 client.on("guildBanRemove", function(guild, member) {
   let Embed = new Discord.MessageEmbed()
     .setAuthor(guild.name, guild.iconURL({ dynamic: true }))
-    .setDescription("**Member Unbanned:**:\n" + member.tag)
+    .setDescription("**Kişinin Banı Açıldı:**:\n" + member.tag)
     .setTimestamp()
     .setColor(ayarlar.embed_color)
     .setFooter("User: " + member.id + " | Guild: " + guild.id);
@@ -269,12 +269,12 @@ client.on("inviteCreate", function(invite) {
    // .addField(":", "```" + invite.memberCount + "```", true)
     .addField("Kullanım Sayısı:", "```" + invite.uses + "```", true)
     .addField("Max Age:", "```" + invite.maxAge + "```", true)
-    .addField("Sınırsızmı", "```" + sınır + "```", true)
+    .addField("Sınırsız mı", "```" + sınır + "```", true)
     .addField("Bitiş Tarihi:", "```" + invite.expiresAt + "```")
     .setTimestamp()
     .setColor(ayarlar.embed_color)
     .setFooter(
-      "By: " + invite.inviter.tag + " | Guild: " + invite.guild.id,
+      "Oluşturan: " + invite.inviter.tag + " | Guild: " + invite.guild.id,
       invite.inviter.displayAvatarURL({ dynamic: true })
     );
   client.channels.cache.get(ayarlar.kanal).send(Embed);
