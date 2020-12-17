@@ -1,5 +1,6 @@
 dependencies:
   chalk: 2.4.2
+  croxydb: 0.0.7
   discord.js: 12.5.1
   express: 4.17.1
   jimp: 0.5.6
@@ -511,6 +512,10 @@ packages:
     requiresBuild: true
     resolution:
       integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
+  /croxydb/0.0.7:
+    dev: false
+    resolution:
+      integrity: sha512-Mjp0mnxT8DLtxQZogGDLBq+f1swu0UJqK4Xw4hN5T4RoA8HvPKCs0GmA6EapETrVW2e1hPOX2YMvKZr426yu4w==
   /debug/2.6.9:
     dependencies:
       ms: 2.0.0
@@ -1112,6 +1117,7 @@ shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   chalk: ^2.4.2
+  croxydb: ^0.0.7
   discord.js: ^12.5.0
   express: ^4.17.1
   jimp: ^0.5.6
